@@ -11,7 +11,7 @@ import { defineConfig, devices }  from '@playwright/test';
  * @see https://playwright.dev/docs/test-configuration
  */
 const config = defineConfig({
-  // testDir: './tests',
+  //testDir: './tests',
   testMatch: '/tests/**/*.spec.js',
   testIgnore: '/tests/**/test.spec.js',
   globalSetup: './globalSetup.js',
