@@ -35,25 +35,19 @@ test.describe('Registration form verification', ()=>{
 
         await name.click()
         await lastName.click()
-        const errorName = page.locator('.invalid-feedback').nth(0)
-        errorName.isVisible()
+        await expect(page.getByText('Name required')).toBeVisible()
 
         await email.click()
-        const errorLastName = page.locator('.invalid-feedback').nth(1)
-        errorLastName.isVisible()
+        await expect(page.getByText('Last name required')).toBeVisible()
 
         await password.click()
-        const errorEmail = page.locator('.invalid-feedback').nth(2)
-        errorEmail.isVisible()
+        await expect(page.getByText('Email required')).toBeVisible()
 
         await reEnterPassword.click()
-        const errorPassword = page.locator('.invalid-feedback').nth(3)
-        errorPassword.isVisible()
+        await expect(page.getByText('Password required')).toBeVisible()
 
-        const registerButton = page.locator('div button.btn-primary:nth-child(1)')
         await popUpspace.click()
-        const errorReEnterPassword = page.locator('.invalid-feedback').nth(4)
-        errorReEnterPassword.isVisible()
+        await expect(page.getByText('Re-enter password required')).toBeVisible()
      })
 
     test('"Name" Error message if field is invalid', async({page})=>{
