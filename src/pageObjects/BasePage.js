@@ -1,0 +1,25 @@
+import Header from "../components/Header.js";
+
+
+
+export default class BasePage {
+    constructor(page, url, waitPageSelector = 'html') {
+        this._page = page
+        this._waitPageSelector = waitPageSelector
+        this._url = url
+        this.header = new Header(page)
+    }
+
+    async visit(){
+        await this._page.goto(this._url)
+        await this.waitLoaded()
+    }
+
+    async waitLoaded(){
+        await this._page.locator(this._waitPageSelector).waitFor()
+    }
+
+    async visit(){
+        await this._page.goto(this._url)
+    }
+}

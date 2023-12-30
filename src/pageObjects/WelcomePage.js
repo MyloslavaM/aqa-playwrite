@@ -1,13 +1,24 @@
+import BasePage from "./BasePage"
+import SignUpPopUp from "../components/SignUp"
 
-export default class WelcomePage {
+export default class WelcomePage extends BasePage{
     constructor(page) {
-        this._page = page
-        this._url = '/'
-        this.signUpButton = paje.locator('.btn-primary')
-        this.signInButton = paje.locator('.header_signin')
+        super(page, '/')
+        this.signUpButton = page.locator('.btn-primary')
+        this.signInButton = page.locator('.header_signin')
     }
 
-    async visit(){
-        await this._page.goto(this._url)
+    async clickSignUpButtonAndOpenPopUP(){
+        
+        await this.signUpButton.click()
+        const popUp = new SignUpPopUp(this._page)
+        return popUp
     }
+    async clickSignInButtonAndOpenPopUp(){
+
+        await this.signInButton.click()
+        const popUpSignIn = new SignInPopUp(this._page)
+        return popUpSignIn
+    }
+
 }
