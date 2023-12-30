@@ -8,6 +8,7 @@ export default class SignUpPopUp extends BaseComponent{
     _passwordInputSelector = '#signupPassword'
     _rePasswordInputSelector = '#signupRepeatPassword'
     _errorMessageSelector = "div.invalid-feedback"
+    _registerButtonSelector = '.btn.btn-primary'
 
     constructor(page){
         super(page, page.locator('app-signup-modal'));
@@ -18,7 +19,7 @@ export default class SignUpPopUp extends BaseComponent{
         this.emailInput = this.container.locator(this._emailInputSelector)
         this.passwordInput = this.container.locator(this._passwordInputSelector)
         this.rePasswordInput = this.container.locator(this._rePasswordInputSelector)
-        this.registerButton = this.container.locator(this._rePasswordInputSelector)
+        this.registerButton = this.container.locator(this._registerButtonSelector)
 
         this.popUpBody = page.locator('.modal-body')
 

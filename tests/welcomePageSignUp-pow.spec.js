@@ -109,6 +109,7 @@ test.describe.only('Registration form verification POM', ()=>{
         await popUp.emailInput.fill('aqa-malina@mailinator.com')
         await popUp.passwordInput.fill('QWEasdqe11')
         await popUp.rePasswordInput.fill('QWEasrrrrrr')
+        await popUp.nameInput.click()
     
        await expect(popUp.rePasswordInputError).toHaveText('Passwords do not match')
        
