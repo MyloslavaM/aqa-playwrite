@@ -19,7 +19,5 @@ export default class BasePage {
         await this._page.locator(this._waitPageSelector).waitFor()
     }
 
-    async visit(){
-        await this._page.goto(this._url)
-    }
+
 }
