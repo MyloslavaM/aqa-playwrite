@@ -1,11 +1,12 @@
 // @ts-check
 import { defineConfig, devices }  from '@playwright/test';
+import {config as testConfig} from "./config/config.js"
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -31,16 +32,13 @@ const config = defineConfig({
   use: {
     actionTimeout: 7_0000,
     /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: 'https://qauto.forstudy.space/',
+    baseURL: testConfig.baseURL,
     viewport: {
       width: 1080,
       height: 720
     },
     headless: false,
-    httpCredentials: {
-      username: 'guest',
-      password: 'welcome2qauto',
-    },
+    httpCredentials: testConfig.httpCredentials,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
