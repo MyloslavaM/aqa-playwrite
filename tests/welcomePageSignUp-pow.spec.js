@@ -1,8 +1,8 @@
 import {test, expect} from "@playwright/test";
-import WelcomePage from "../src/pageObjects/WelcomePage";
+import WelcomePage from "../src/pageObjects/welcomePage/WelcomePage";
 
 
-test.describe.only('Registration form verification POM', ()=>{
+test.describe('Registration form verification POM', ()=>{
     let page;
     let welcomePage;
     
