@@ -11,8 +11,7 @@ test.describe.only("User", () => {
     const element = page.locator("p", { hasText: "Porsche Cayenne" });
     expect(await element.isVisible());
 
-    const garagePageInstance = new GaragePage(page);
-    await garagePageInstance.deleteFirstCarFromList();
+    await userGaragePageWithStorage.deleteFirstCarFromList();
   });
 });
 
