@@ -1,4 +1,4 @@
-import BaseComponent from "./BaseComponent"
+import BaseComponent from "../../../components/BaseComponent"
 
  
 export default class SignUpPopUp extends BaseComponent{
