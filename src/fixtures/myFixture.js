@@ -3,6 +3,7 @@ import WelcomePage from "../pageObjects/welcomePage/WelcomePage";
 import { USERS } from "../data/users";
 import GaragePage from "../pageObjects/garagePage/GaragePage";
 import { STORAGE_STATET_USER_PATH } from "../data/constants/storageState";
+import ProfilePage from "../pageObjects/profilePage/ProfilePage.js";
 
 export const test = base.extend({
   userGaragePage: async ({ page }, use) => {
@@ -14,7 +15,8 @@ export const test = base.extend({
       USERS.MILA_M.password
     );
 
-    use(garagePage);
+    use(garagePage)
+    await page.close()
   },
 
   userGaragePageWithStorage: async ({ browser }, use) => {
@@ -31,4 +33,22 @@ export const test = base.extend({
     // Clean up
     await ctx.close();
   },
+
+
+  profilePage: async ({ browser }, use) => {
+    const ctx = await browser.newContext({
+      storageState: STORAGE_STATET_USER_PATH,
+    });
+
+    const page = await ctx.newPage();
+    const profilePage = new ProfilePage(page);
+
+    try {
+      await profilePage.visit();
+      await use(profilePage);
+    } finally {
+      await ctx.close();
+    }
+  },
+
 });
