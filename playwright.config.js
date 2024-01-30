@@ -1,22 +1,21 @@
 // @ts-check
-import { defineConfig, devices }  from '@playwright/test';
-import {config as testConfig} from "./config/config.js"
+import { defineConfig, devices } from "@playwright/test";
+import { config as testConfig } from "./config/config";
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
 
-
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
 const config = defineConfig({
   //testDir: './tests',
-  testMatch: '/tests/**/*.spec.js',
-  testIgnore: '/tests/**/test.spec.js',
-  globalSetup: './globalSetup.js',
-  globalTeardown: './globalTeardown.js',
+  testMatch: "/tests/**/*.spec.js",
+  testIgnore: "/tests/**/test.spec.js",
+  globalSetup: "./globalSetup.js",
+  globalTeardown: "./globalTeardown.js",
   timeout: 40_000,
   /* Run tests in files in parallel */
   fullyParallel: false,
@@ -27,7 +26,7 @@ const config = defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: "html",
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     actionTimeout: 7_0000,
@@ -35,35 +34,36 @@ const config = defineConfig({
     baseURL: testConfig.baseURL,
     viewport: {
       width: 1080,
-      height: 720
+      height: 720,
     },
     headless: false,
+    // @ts-ignore
     httpCredentials: testConfig.httpCredentials,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: "global-setup",
-      testMatch: 'tests/setup/*.setup.js',
+      testMatch: "tests/setup/*.setup.js",
     },
     {
       name: "global-teardown",
-      testMatch: 'tests/teardown/*.teardown.js',
+      testMatch: "tests/teardown/*.teardown.js",
     },
     {
-      name: 'smoke-tests',
+      name: "smoke-tests",
       grep: /@smoke/,
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices["Desktop Chrome"] },
       dependencies: ["global-setup"],
       teardown: "global-teardown",
     },
     {
-      name: 'regression',
-      use: { ...devices['Desktop Chrome'] },
+      name: "regression",
+      use: { ...devices["Desktop Chrome"] },
       dependencies: ["global-setup"],
       teardown: "global-teardown",
     },
@@ -120,4 +120,4 @@ const config = defineConfig({
   // },
 });
 
-export default config
+export default config;
