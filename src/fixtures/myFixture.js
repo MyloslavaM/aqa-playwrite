@@ -43,12 +43,7 @@ export const test = base.extend({
     const page = await ctx.newPage();
     const profilePage = new ProfilePage(page);
 
-    try {
-      await profilePage.visit();
-      await use(profilePage);
-    } finally {
-      await ctx.close();
-    }
+
   },
 
 });
