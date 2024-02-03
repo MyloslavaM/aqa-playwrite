@@ -36,7 +36,7 @@ const config = defineConfig({
       width: 1080,
       height: 720,
     },
-    headless: false,
+    headless: true,
     // @ts-ignore
     httpCredentials: testConfig.httpCredentials,
 

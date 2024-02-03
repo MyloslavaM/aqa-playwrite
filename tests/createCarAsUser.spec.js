@@ -181,7 +181,7 @@ test.describe("User", () => {
             expect(body.status).toBe("error")
         })
 
-        test.only('Visit and Edit Profile Page', async ({profilePage})=> {
+        test('Visit and Edit Profile Page', async ({profilePage})=> {
             const {page} = profilePage
 
             const editClick = await profilePage.editProfilePage()
