@@ -1,34 +1,11 @@
-import {expect, test} from "@playwright/test";
-import axios from "axios";
-import {USERS} from "../../src/data/users.js";
-
-
+import { expect, test } from "@playwright/test";
+import APIClient from "../../src/client/APIClient.js";
+import { USERS } from "../../src/data/users.js";
 
 test('Create and GET Car API Test', async () => {
+    const apiClient = await APIClient.authenticate(USERS.MILA_M.email, USERS.MILA_M.password);
 
-         let client;
-
-        client = axios.create({
-            baseURL: 'https://qauto.forstudy.space/api'
-        });
-
-        const signInResponse = await client.post('/auth/signin', {
-            "email": USERS.MILA_M.email,
-            "password": USERS.MILA_M.password,
-            "remember": false
-        });
-
-        const cookie = signInResponse.headers["set-cookie"][0].split(';')[0];
-        client = axios.create({
-            baseURL: 'https://qauto.forstudy.space/api',
-            headers: {
-                cookie,
-            }
-        });
-
-
-
-    const postResponse = await client.post('/cars', {
+    const postResponse = await apiClient.carController.createCar({
         carBrandId: 1,
         carModelId: 1,
         mileage: 122,
@@ -36,8 +13,14 @@ test('Create and GET Car API Test', async () => {
 
     expect(postResponse.data.status).toBe('ok');
 
-    const updatedResponse = await client.get('/cars');
+    const updatedResponse = await apiClient.carController.getUserCars();
 
     expect(updatedResponse.data.status).toBe('ok');
-    console.log(updatedResponse.data.data)
+
+    const carId = postResponse.data.data.id;
+
+    const specificCarResponse = await apiClient.carController.getUserCarById(carId);
+
+    expect(specificCarResponse.data.status).toBe('ok');
+    console.log(specificCarResponse.data.data);
 });
