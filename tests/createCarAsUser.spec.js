@@ -1,7 +1,5 @@
 import { expect, request } from "@playwright/test";
 import { test } from "../src/fixtures/myFixture";
-import GaragePage from "../src/pageObjects/garagePage/GaragePage";
-import {runInNewContext} from "node:vm";
 import {STORAGE_STATET_USER_PATH} from "../src/data/constants/storageState.js";
 
 test.describe("User", () => {
@@ -87,13 +85,7 @@ test.describe("User", () => {
         await page.route('/api/cars/brands', async (route) => {
             await route.fulfill({body: JSON.stringify(body)})
         })
-        // await page.pause()
-        // page.on('console', (data)=> {
-        //     console.log( "Console event has happened: ",data.text())
-        //     if (data.type() === "error"){
-        //         throw new Error("I have broken your FE!!! ahahahah")
-        //     }
-        // })
+
         const popup = await userGaragePageWithStorage.openAddCarPopup()
         await popup.fillAndSubmit("BMW", "X6", 12)
 
