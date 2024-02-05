@@ -41,7 +41,7 @@ test.describe("User", () => {
     });
 
 
-    test.only('should be able to create a car (intercept request)', async ({userGaragePageWithStorage}) => {
+    test('should be able to create a car (intercept request)', async ({userGaragePageWithStorage}) => {
         const {page} = userGaragePageWithStorage
 
         await page.route('/api/cars/*', async (route) => {
