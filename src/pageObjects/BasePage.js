@@ -13,7 +13,8 @@ export default class BasePage {
   }
 
   async visit() {
-    await this._page.goto(this._url);
+    const targetURL = new URL(this._url);
+    await this._page.goto(targetURL.href); 
     await this.waitLoaded();
   }
 
