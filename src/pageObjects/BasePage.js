@@ -1,7 +1,7 @@
 import Header from "../components/Header.js";
 
 export default class BasePage {
-  constructor(page, url, waitPageSelector = "html") {
+  constructor(page, url = "https://qauto.forstudy.space", waitPageSelector = "html") {
     this._page = page;
     this._waitPageSelector = waitPageSelector;
     this._url = url;
@@ -13,8 +13,10 @@ export default class BasePage {
   }
 
   async visit() {
-    await this._page.goto('https://qauto.forstudy.space');
-    await this.waitLoaded();
+      const targetURL = new URL(this._url);
+      await this._page.goto(targetURL.toString());
+      await this.waitLoaded();
+   
   }
 
   async waitLoaded() {
