@@ -20,7 +20,7 @@ export default class WelcomePage extends BasePage{
         return popUp
     }
     async clickSignInButtonAndOpenPopup(){
-        await this.header.signInButton.click()
+        await this.signInButton.click()
         const popup = new SignInPopup(this._page)
         return popup
     }
