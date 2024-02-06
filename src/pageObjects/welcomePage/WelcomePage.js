@@ -5,7 +5,7 @@ import GaragePage from "../garagePage/GaragePage.js"
 
 export default class WelcomePage extends BasePage{
     constructor(page) {
-        super(page, '/')
+        super(page, 'https://qauto.forstudy.space')
         this.signUpButton = page.locator('.btn-primary')
         this.signInButton = page.locator('.header_signin')
         this.guestLoginButton = page.locator('button.-guest')
