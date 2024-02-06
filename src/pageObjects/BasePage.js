@@ -13,7 +13,7 @@ export default class BasePage {
   }
 
   async visit() {
-    await this._page.goto('https://qauto.forstudy.space/');
+    await this._page.goto('https://qauto.forstudy.space');
     await this.waitLoaded();
   }
 

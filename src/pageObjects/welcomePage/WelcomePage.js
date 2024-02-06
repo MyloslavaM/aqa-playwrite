@@ -1,4 +1,4 @@
-import BasePage from "../BasePage"
+import BasePage from "../BasePage.js"
 import SignUpPopUp from "./components/SignUp.js"
 import SignInPopup from "./components/SignIn.js";
 import GaragePage from "../garagePage/GaragePage.js"
