@@ -1,4 +1,5 @@
 import Header from "../components/Header.js";
+import BaseComponent from "../components/BaseComponent.js";
 
 export default class BasePage extends BaseComponent{
   constructor(page, url, waitPageSelector = 'html') {
