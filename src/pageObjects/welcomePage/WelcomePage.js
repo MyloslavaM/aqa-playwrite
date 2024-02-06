@@ -1,11 +1,11 @@
-import BasePage from "../BasePage.js"
+import BasePage from "../BasePage"
 import SignUpPopUp from "./components/SignUp.js"
 import SignInPopup from "./components/SignIn.js";
 import GaragePage from "../garagePage/GaragePage.js"
 
 export default class WelcomePage extends BasePage{
     constructor(page) {
-        super(page, 'https://qauto.forstudy.space/')
+        super(page, '/')
         this.signUpButton = page.locator('.btn-primary')
         this.signInButton = page.locator('.header_signin')
         this.guestLoginButton = page.locator('button.-guest')
