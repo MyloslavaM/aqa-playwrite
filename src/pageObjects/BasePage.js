@@ -1,24 +1,24 @@
 import Header from "../components/Header.js";
-import BaseComponent from "../components/BaseComponent.js";
+import BaseComponent from "../components/BaseComponent.js"
 
 export default class BasePage extends BaseComponent{
-  constructor(page, url, waitPageSelector = 'html') {
-    super(page, page.locator('html'))
-    this._waitPageSelector = waitPageSelector
-    this._url = url
-    this.header = new Header(page)
+  constructor(page, url, waitPageSelector = "html") {
+    this._page = page;
+    this._waitPageSelector = waitPageSelector;
+    this._url = url;
+    this.header = new Header(page);
   }
 
   get page() {
-    return this._page
+    return this._page;
   }
 
-  async visit(){
-    await this._page.goto(this._url)
-    await this.waitLoaded()
+  async visit() {
+    await this._page.goto(this._url);
+    await this.waitLoaded();
   }
 
-  async waitLoaded(){
-    await this._page.locator(this._waitPageSelector).waitFor()
+  async waitLoaded() {
+    await this._page.locator(this._waitPageSelector).waitFor();
   }
 }
